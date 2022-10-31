@@ -1,0 +1,92 @@
+<div class="mt-4">
+    <div>
+      <h3>My deleted game</h3>
+      <a href="/me/stored/games">List game</a>
+    </div>
+
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Game</th>
+                <th scope="col">Level</th>
+                <th scope="col" colspan="2">Deleted time</th>
+            </tr>
+        </thead>
+        <tbody>
+          {{#each games}}
+          <tr>
+            <td scope="row">{{sum @index 1}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.level}}</td>
+            <td>{{this.deletedAt}}</td>
+            <td>
+              <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Restore</a>
+              <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delele-game-modal">Empty this game</a>
+            </td>
+          </tr>
+          {{else}}
+          <tr>
+            <td colspan="5" class="text-center">
+              Nothing here :D
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+    </table>
+</div>
+
+{{!-- Confirm delete game --}}
+<div id="delele-game-modal" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Delete game</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>This action can't undo. You still want to delete this game?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button id="btn-delete-game" type="button" class="btn btn-danger">Still delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form name="delete-game-form" method="POST"></form>
+<form name="restore-game-form" method="POST"></form>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function(){
+
+      var gameId;
+      var deleteForm = document.forms['delete-game-form'];
+      var restoreForm = document.forms['restore-game-form'];
+      var btnDeleteGame = document.getElementById('btn-delete-game');
+      var btnResoreGame = $('.btn-restore');
+
+      $('#delele-game-modal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        gameId = button.data('id');
+      });
+
+      btnDeleteGame.onclick = function (){
+        deleteForm.action = '/games/' + gameId + '/force?_method=DELETE';
+        deleteForm.submit();
+      }
+
+      btnResoreGame.click (function (e) {
+         e.preventDefault();
+         var gameId = $(this).data('id');
+         restoreForm.action = '/games/' + gameId + '/restore?_method=PATCH';
+         restoreForm.submit();
+      });
+
+    });
+    
+</script>
