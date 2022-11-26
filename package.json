@@ -13,6 +13,7 @@
   "dependencies": {
     "@primer/octicons": "^17.7.0",
     "bootstrap-icons": "^1.9.1",
+    "config": "^3.3.8",
     "express": "^4.18.1",
     "express-handlebars": "^6.0.6",
     "method-override": "^3.0.0",

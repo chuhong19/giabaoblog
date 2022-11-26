@@ -9,7 +9,7 @@ const port = process.env.PORT || 5000;
 const sortMiddleware = require('./app/middlewares/SortMiddleware');
 
 const route = require('./routes');
-const db = require('./config/db');
+const db = require('./config');
 const { setPriority } = require('os');
 
 // Connect to DB

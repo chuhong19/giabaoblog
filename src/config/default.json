@@ -1,0 +1,3 @@
+{
+    "mongoURI":"mongodb+srv://giabao:1234@clustertest.mhrobf7.mongodb.net/?retryWrites=true&w=majority"
+}
