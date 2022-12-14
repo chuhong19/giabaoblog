@@ -28,4 +28,5 @@ const Game = new Schema({
 mongoose.plugin(slug);
 Game.plugin(mongooseDelete, {overrideMethods: 'all' });
 Game.plugin(AutoIncrement);
+
 module.exports = mongoose.model('Game', Game);

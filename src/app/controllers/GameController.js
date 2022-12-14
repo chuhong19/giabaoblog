@@ -19,6 +19,7 @@ class GameController {
 
     // [POST] /games/store
     store (req, res, next) {
+        req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
         const game = new Game(req.body);
         game.save()
             .then(() => res.redirect('/me/stored/games'))
