@@ -15,12 +15,13 @@ const Game = new Schema({
     level: { type: String },
     slug: { type: String, slug: 'name', unique: true },
     cost: { type: String },
-    createdAt: { type: Date, default: Date.now },
-    updatedAt: { type: Date, default: Date.now },
+    //createdAt: { type: Date, default: Date.now },
+    //updatedAt: { type: Date, default: Date.now },
     deletedAt: {},
 },
 {
     _id: false,
+    timestamps: true
 },
   );
 

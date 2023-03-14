@@ -7,15 +7,15 @@ class MeController {
     // [GET] /me/stored/games
     storedGames (req, res, next) {
        
-        let courseQuery = Game.find({});
+        let gameQuery = Game.find({});
 
         if (req.query.hasOwnProperty('_sort')){
-            courseQuery = courseQuery.sort({
+            gameQuery = gameQuery.sort({
                 [req.query.column]: req.query.type
             });
         }
 
-        Promise.all([courseQuery, Game.countDocumentsDeleted()])
+        Promise.all([gameQuery, Game.countDocumentsDeleted()])
             .then(([games, deletedCount]) => 
                 res.render('me/stored-games', {
                     deletedCount,

@@ -1,3 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://giabao:1234@clustertest.mhrobf7.mongodb.net/?retryWrites=true&w=majority"
+    "mongoURI":"mongodb+srv://giabao:1234@clustertest.mhrobf7.mongodb.net/board_game?retryWrites=true&w=majority"
 }
+

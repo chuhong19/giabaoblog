@@ -22,18 +22,19 @@ class GameController {
         req.body.image = `https://img.youtube.com/vi/${req.body.videoId}/sddefault.jpg`;
         const game = new Game(req.body);
         game.save()
-            .then(() => res.redirect('/me/stored/games'))
+            .then(
+                () => res.redirect('/me/stored/games')
+                )
             .catch(next); 
     }
 
     // [GET] /games/:id/edit
     edit (req, res, next) {
         Game.findById(req.params.id)
-            .then(game => res.render('games/edit',{
+            .then(game => res.render('games/edit', {
                 game: mongooseToObject(game)
             }))
             .catch(next);
-        
     }
 
     // [PUT] /games/:id

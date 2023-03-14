@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 
 async function connect(){
     try{
-        await mongoose.connect('mongodb://localhost:27017/board_game');
+        await mongoose.connect('mongodb+srv://giabao:1234@clustertest.mhrobf7.mongodb.net/board_game?retryWrites=true&w=majority');
         console.log("Connect successfully");
     }
     catch (error){
-        console.log("Fail to connect database");
+        console.log("Fail to connect database", error);
     }
 }
 
